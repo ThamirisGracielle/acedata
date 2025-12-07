@@ -8,12 +8,14 @@ public class Main {
 
 
         Scanner teclado = new Scanner(System.in);
+        System.out.print("Informe seu nome: ");
+        String nome = teclado.nextLine();
 
         double valorHora = lerDoublePositivo(teclado, "Informe o valor da hora trabalhada: ");
         double quatidadeHorasTrabalhadas = lerDoublePositivo(teclado, "Informe a quantidade de horas trabalhadas no mês: ");
         int quantidadeFilhosMenosQuatrorzeAnos = lerIntNaoNegativo(teclado, "Informe a quantidade de filhos menores de 14 anos: ");
 
-        Funcionario funcionario = new Funcionario(valorHora, quatidadeHorasTrabalhadas, quantidadeFilhosMenosQuatrorzeAnos);
+        Funcionario funcionario = new Funcionario(nome, valorHora, quatidadeHorasTrabalhadas, quantidadeFilhosMenosQuatrorzeAnos);
 
         CalculoSalario calculoSalario = new CalculoSalario();
         CalculoSalarioFamilia calculoSalarioFamilia = new CalculoSalarioFamilia();
@@ -23,6 +25,7 @@ public class Main {
         double salarioTotal = salarioBruto + salarioFamilia;
 
         System.out.println("=--=-= Folha de Pagamento =-=-=-=");
+        System.out.println("Nome do funcionário " + nome);
         System.out.println("Salário bruto: R$ " + salarioBruto);
         System.out.println("Salário-família: R$ " + salarioFamilia);
         System.out.println("Salário total: R$ " + salarioTotal);
