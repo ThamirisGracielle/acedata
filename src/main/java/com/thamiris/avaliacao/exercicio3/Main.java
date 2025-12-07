@@ -22,11 +22,9 @@ public class Main {
 
         Fibonacci fibonacci = new Fibonacci(n);
 
-        // a) Imprime os N primeiros números
         System.out.println("Os " + n + " primeiros números da sequência de Fibonacci:");
         System.out.println(fibonacci.getSequencia());
 
-        // b) Verifica se N pertence à sequência
         if (fibonacci.contem(n)) {
             System.out.println(n + " faz parte da sequência de Fibonacci.");
         } else {
