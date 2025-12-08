@@ -13,13 +13,14 @@ public class Main {
 
             Fibonacci fibonacci = new Fibonacci(n);
 
-            System.out.println("Os " + n + " primeiros números da sequência de Fibonacci:");
+            System.out.println("\n=-=-=- Fibonacci =-=-=-");
+            System.out.println("Os " + n + " primeiros números da sequência de Fibonacci são:");
             System.out.println(fibonacci.getSequence());
 
             if (fibonacci.containsNumber(n)) {
-                System.out.println(n + " faz parte da sequência de Fibonacci.");
+                System.out.println("\nO numero digitado " + n + " faz parte da sequência de Fibonacci.");
             } else {
-                System.out.println(n + " NÃO faz parte da sequência de Fibonacci.");
+                System.out.println("\nO numero digitado " +n + " não faz parte da sequência de Fibonacci.");
             }
         }
     }

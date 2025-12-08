@@ -15,11 +15,11 @@ public class Sequence {
     /**
      * Adds a number to the list of numbers.
      *
-     * This method does the following:
-     * - Checks if the number is negative. If it is, throws an exception.
-     * - If the number is zero or positive, adds it to the list 'numbers'.
+     * - checks if the number is greater than or equal to zero
+     * - adds the number to the list
      *
-     * @param number the number to add (must be 0 or positive)
+     * Takes a number as a parameter.
+     * Does not return anything.
      */
 
     public void addNumber(int number) {
@@ -30,14 +30,12 @@ public class Sequence {
     }
 
     /**
-     * Returns the sequence of numbers as a string.
-     * <p>
-     * This method converts the internal list of numbers to a string representation
-     * and returns it. The format depends on how the internal list's `toString` method
-     * formats the elements (typically as a comma-separated list enclosed in brackets).
-     * </p>
+     * Returns the list of numbers as a string.
      *
-     * @return A string representing the sequence of numbers.
+     * - converts the list of numbers to a string
+     *
+     * Does not take any parameters.
+     * Returns the sequence of numbers as a String.
      */
     public String getSequence() {
         return numbers.toString();
@@ -46,11 +44,11 @@ public class Sequence {
     /**
      * Returns the smallest number in the list.
      *
-     * This method does the following:
-     * - Checks if the list 'numbers' is empty. If it is, throws an exception.
-     * - Goes through all numbers and finds the smallest one.
+     * - checks if the list is empty and throws an exception if it is
+     * - goes through all numbers to find the smallest one
      *
-     * @return the smallest number in the list
+     * Does not take any parameters.
+     * Returns the smallest number as an int.
      */
     public int getSmallest() {
         if (numbers.isEmpty()) {
@@ -69,11 +67,11 @@ public class Sequence {
     /**
      * Returns the largest number in the list.
      *
-     * This method does the following:
-     * - Checks if the list 'numbers' is empty. If it is, throws an exception.
-     * - Goes through all numbers and finds the largest one.
+     * - checks if the list is empty and throws an exception if it is
+     * - goes through all numbers to find the largest one
      *
-     * @return the largest number in the list
+     * Does not take any parameters.
+     * Returns the largest number as an int.
      */
     public int getLargest() {
         if (numbers.isEmpty()) {

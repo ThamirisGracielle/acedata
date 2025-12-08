@@ -20,14 +20,13 @@ public class Payroll {
     }
 
     /**
-     * Calculates the employee's salary values.
+     * Calculates the employee's salary.
      *
-     * This method does the following:
-     * - grossSalary: gets value from calculateGrossSalary()
-     * - familyAllowance: gets value from calculateFamilyAllowance()
-     * - netSalary: sum of grossSalary and familyAllowance
+     * - gets the gross salary using calculateGrossSalary()
+     * - gets the family allowance using calculateFamilyAllowance()
+     * - calculates the net salary by adding gross salary and family allowance
      *
-     * It does not take any parameters and does not return anything.
+     * Does not take any parameters and does not return anything.
      */
 
     private void calculate() {
@@ -39,30 +38,29 @@ public class Payroll {
     /**
      * Calculates the employee's gross salary.
      *
-     * This method multiplies:
-     * - the value of one worked hour (employee.getworked_hour_value())
-     * - by the number of hours worked (employee.getHoursWorked())
+     * - multiplies the value of one worked hour by the total hours worked
      *
-     * It returns the result as a double.
+     * Does not take any parameters.
+     * Returns the gross salary as a double.
      */
 
     private double calculateGrossSalary() {
-        return employee.getworked_hour_value() * employee.getHoursWorked();
+        return employee.getWorkedHourValue() * employee.getHoursWorked();
     }
 
+
     /**
-     * Calculates the family allowance for the employee.
+     * Calculates the employee's family allowance.
      *
-     * This method does the following:
-     * - Checks the gross salary to decide the value per child:
-     *   * MIN_SALARY_LIMIT → CHILD_VALUE_MIN_SALARY
-     *   * MEDIUM_SALARY_LIMIT → CHILD_VALUE_MEDIUM_SALARY
-     *   * Higher than MEDIUM_SALARY_LIMIT → CHILD_VALUE_HIGH_SALARY
-     * - Multiplies the value per child by the number of children (employee.getNumberOfChildren())
+     * - counts the number of children under 14 years old
+     * - defines the value per child based on the employee's gross salary
+     * - multiplies the number of eligible children by the value per child
      *
-     * It returns the total family allowance as a double.
+     * Does not take any parameters.
+     * Returns the family allowance as a double.
      */
     private double calculateFamilyAllowance() {
+        int eligibleChildren = employee.getNumberOfChildrenUnder14(); // apenas filhos menores de 14 anos
         double valuePerChild;
 
         if (grossSalary <= MIN_SALARY_LIMIT) {
@@ -73,7 +71,23 @@ public class Payroll {
             valuePerChild = CHILD_VALUE_HIGH_SALARY;
         }
 
-        return employee.getNumberOfChildren() * valuePerChild;
+        return eligibleChildren * valuePerChild;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public double getGrossSalary() {
+        return grossSalary;
+    }
+
+    public double getFamilyAllowance() {
+        return familyAllowance;
+    }
+
+    public double getNetSalary() {
+        return netSalary;
     }
 
     public void print() {

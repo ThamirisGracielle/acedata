@@ -1,36 +1,39 @@
 package com.thamiris.avaliacao.exercicio1;
 
+import java.util.List;
+
 public class Employee {
 
     private String name;
-    private double worked_hour_value;
+    private double workedHourValue;
     private double hoursWorked;
-    private int numberOfChildren;
+    private List<Integer> childrenAges;
 
-    public Employee(String name, double worked_hour_value, double hoursWorked, int numberOfChildren) {
+    public Employee(String name, double workedHourValue, double hoursWorked, List<Integer> childrenAges) {
         this.name = name;
-        this.worked_hour_value = worked_hour_value;
+        this.workedHourValue = workedHourValue;
         this.hoursWorked = hoursWorked;
-        this.numberOfChildren = numberOfChildren;
+        this.childrenAges = childrenAges;
     }
 
     public String getName() {
-
         return name;
     }
 
-    public double getworked_hour_value() {
-
-        return worked_hour_value;
+    public double getWorkedHourValue() {
+        return workedHourValue;
     }
 
     public double getHoursWorked() {
-
         return hoursWorked;
     }
 
-    public int getNumberOfChildren() {
+    public List<Integer> getChildrenAges() {
+        return childrenAges;
+    }
 
-        return numberOfChildren;
+
+    public int getNumberOfChildrenUnder14() {
+        return (int) childrenAges.stream().filter(age -> age < 14).count();
     }
 }

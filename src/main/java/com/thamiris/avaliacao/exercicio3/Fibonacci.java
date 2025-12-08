@@ -13,14 +13,14 @@ public class Fibonacci {
     }
 
     /**
-     * Generates the Fibonacci sequence with n numbers.
+     * Generates a sequence of numbers (like the Fibonacci sequence).
      *
-     * This method does the following:
-     * - If n is 0 or negative, it does nothing.
-     * - Adds the first two numbers (1, 1) if n >= 2.
-     * - Calculates the next numbers by summing the previous two and adds them to the list 'sequence'.
+     * - starts the sequence with 1
+     * - adds numbers following the rule: each number is the sum of the two previous numbers
+     * - stops when the sequence has n numbers
      *
-     * @param n the number of Fibonacci numbers to generate
+     * Takes n as a parameter (the length of the sequence).
+     * Does not return anything.
      */
     private void generateSequence(int n) {
         if (n <= 0) return;
@@ -36,29 +36,24 @@ public class Fibonacci {
     }
 
     /**
-     * Returns a copy of the current sequence of integers.
-     * <p>
-     * This method creates and returns a new ArrayList containing the same elements
-     * as the internal sequence. Modifications to the returned list will not affect
-     * the original internal sequence.
-     * </p>
+     * Returns a copy of the generated sequence.
      *
-     * @return A new List of integers representing the current sequence.
+     * - creates a new list with the same numbers as the original sequence
+     *
+     * Does not take any parameters.
+     * Returns the sequence as a List of integers.
      */
     public List<Integer> getSequence() {
         return new ArrayList<>(sequence);
     }
 
     /**
-     * Checks if a specific number is present in the sequence.
-     * <p>
-     * This method verifies whether the given integer is contained
-     * in the internal sequence of numbers.
-     * </p>
+     * Checks if the sequence contains a specific number.
      *
-     * @param x The number to check for in the sequence.
-     * @return {@code true} if the number is present in the sequence,
-     *         {@code false} otherwise.
+     * - looks for the number x in the sequence
+     *
+     * Takes x as a parameter (the number to check).
+     * Returns true if the number is in the sequence, false otherwise.
      */
     public boolean containsNumber(int x) {
         return sequence.contains(x);

@@ -18,7 +18,8 @@ public class Main {
                 sequence.addNumber(number);
             }
 
-            System.out.println("Sequência digitada: " + sequence.getSequence());
+            System.out.println("\nSequência digitada: ");
+            System.out.println(sequence.getSequence());
             System.out.println("Menor número: " + sequence.getSmallest());
             System.out.println("Maior número: " + sequence.getLargest());
         }
