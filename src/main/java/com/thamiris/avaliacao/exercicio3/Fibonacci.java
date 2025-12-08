@@ -12,6 +12,16 @@ public class Fibonacci {
         generateSequence(n);
     }
 
+    /**
+     * Generates the Fibonacci sequence with n numbers.
+     *
+     * This method does the following:
+     * - If n is 0 or negative, it does nothing.
+     * - Adds the first two numbers (1, 1) if n >= 2.
+     * - Calculates the next numbers by summing the previous two and adds them to the list 'sequence'.
+     *
+     * @param n the number of Fibonacci numbers to generate
+     */
     private void generateSequence(int n) {
         if (n <= 0) return;
 
@@ -25,10 +35,31 @@ public class Fibonacci {
         }
     }
 
+    /**
+     * Returns a copy of the current sequence of integers.
+     * <p>
+     * This method creates and returns a new ArrayList containing the same elements
+     * as the internal sequence. Modifications to the returned list will not affect
+     * the original internal sequence.
+     * </p>
+     *
+     * @return A new List of integers representing the current sequence.
+     */
     public List<Integer> getSequence() {
         return new ArrayList<>(sequence);
     }
 
+    /**
+     * Checks if a specific number is present in the sequence.
+     * <p>
+     * This method verifies whether the given integer is contained
+     * in the internal sequence of numbers.
+     * </p>
+     *
+     * @param x The number to check for in the sequence.
+     * @return {@code true} if the number is present in the sequence,
+     *         {@code false} otherwise.
+     */
     public boolean containsNumber(int x) {
         return sequence.contains(x);
     }
