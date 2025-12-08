@@ -8,14 +8,16 @@ public class Fibonacci {
     private List<Integer> sequencia;
 
     public Fibonacci(int n) {
-        sequencia = new ArrayList<>();
+        sequencia = new ArrayList<>(n);
         gerarSequencia(n);
     }
 
     private void gerarSequencia(int n) {
         if (n <= 0) return;
+
         sequencia.add(1);
         if (n == 1) return;
+
         sequencia.add(1);
         for (int i = 2; i < n; i++) {
             int proximo = sequencia.get(i - 1) + sequencia.get(i - 2);
@@ -24,7 +26,7 @@ public class Fibonacci {
     }
 
     public List<Integer> getSequencia() {
-        return sequencia;
+        return new ArrayList<>(sequencia);
     }
 
     public boolean contem(int x) {
