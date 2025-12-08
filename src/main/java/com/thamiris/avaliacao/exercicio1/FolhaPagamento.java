@@ -7,11 +7,12 @@ public class FolhaPagamento {
     private double salarioFamilia;
     private double salarioTotal;
 
-    private static final double LIMITE_BAIXO = 788.00;
-    private static final double LIMITE_MEDIO = 1100.00;
-    private static final double VALOR_FILHO_BAIXO = 30.50;
-    private static final double VALOR_FILHO_MEDIO = 18.50;
-    private static final double VALOR_FILHO_ALTO = 11.90;
+    private static final double LIMITE_MINIMO_SALARIO = 788.00;
+    private static final double LIMITE_MEDIO_SALARIO = 1100.00;
+
+    private static final double VALOR_POR_FILHO_MINIMO_SALARIO = 30.50;
+    private static final double VALOR_POR_FILHO_MEDIO_SALARIO  = 18.50;
+    private static final double VALOR_POR_FILHO_ALTO_SALARIO = 11.90;
 
     public FolhaPagamento(Funcionario funcionario) {
         this.funcionario = funcionario;
@@ -31,12 +32,12 @@ public class FolhaPagamento {
     private double calcularSalarioFamilia() {
         double valorPorFilho;
 
-        if (salarioBruto <= LIMITE_BAIXO) {
-            valorPorFilho = VALOR_FILHO_BAIXO;
-        } else if (salarioBruto <= LIMITE_MEDIO) {
-            valorPorFilho = VALOR_FILHO_MEDIO;
+        if (salarioBruto <= LIMITE_MINIMO_SALARIO ) {
+            valorPorFilho = VALOR_POR_FILHO_MINIMO_SALARIO;
+        } else if (salarioBruto <= LIMITE_MEDIO_SALARIO) {
+            valorPorFilho = VALOR_POR_FILHO_MEDIO_SALARIO;
         } else {
-            valorPorFilho = VALOR_FILHO_ALTO;
+            valorPorFilho = VALOR_POR_FILHO_ALTO_SALARIO;
         }
 
         return funcionario.getQuantidadeFilhos() * valorPorFilho;
@@ -48,17 +49,5 @@ public class FolhaPagamento {
         System.out.println("Salário bruto: R$ " + String.format("%.2f", salarioBruto));
         System.out.println("Salário-família: R$ " + String.format("%.2f", salarioFamilia));
         System.out.println("Salário total: R$ " + String.format("%.2f", salarioTotal));
-    }
-
-    public double getSalarioBruto() {
-        return salarioBruto;
-    }
-
-    public double getSalarioFamilia() {
-        return salarioFamilia;
-    }
-
-    public double getSalarioTotal() {
-        return salarioTotal;
     }
 }
