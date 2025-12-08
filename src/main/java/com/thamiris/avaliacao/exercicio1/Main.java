@@ -1,5 +1,7 @@
 package com.thamiris.avaliacao.exercicio1;
 
+import com.thamiris.avaliacao.util.Validador;
+
 import java.util.Scanner;
 
 public class Main {

@@ -7,20 +7,16 @@ public class Sequencia {
 
     private List<Integer> numeros;
 
-
     public Sequencia(int capacidade) {
         numeros = new ArrayList<>(capacidade);
     }
 
-
-    public void adicionarNumero(int numero) throws  IllegalArgumentException {
+    public void adicionarNumero(int numero) {
         if (numero < 0) {
-            throw new IllegalArgumentException("Número deve ser maior que zero!");
+            throw new IllegalArgumentException("Número deve ser maior ou igual a zero!");
         }
         numeros.add(numero);
-
     }
-
 
     public String getSequencia() {
         return numeros.toString();
@@ -30,21 +26,13 @@ public class Sequencia {
         if (numeros.isEmpty()) {
             throw new IllegalStateException("Sequência vazia!");
         }
-        int menor = numeros.get(0);
-        for (int num : numeros) {
-            if (num < menor) menor = num;
-        }
-        return menor;
-
+        return numeros.stream().min(Integer::compareTo).get();
     }
+
     public int getMaior() {
         if (numeros.isEmpty()) {
             throw new IllegalStateException("Sequência vazia!");
         }
-        int maior = numeros.get(0);
-        for (int num : numeros) {
-            if (num > maior) maior = num;
-        }
-        return maior;
+        return numeros.stream().max(Integer::compareTo).get();
     }
 }
