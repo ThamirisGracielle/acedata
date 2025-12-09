@@ -1,4 +1,4 @@
-package com.thamiris.avaliacao.exercicio1;
+package com.thamiris.avaliacao.exercicio1.model;
 
 import java.util.List;
 
@@ -19,21 +19,23 @@ public class Employee {
     public String getName() {
         return name;
     }
-
     public double getWorkedHourValue() {
         return workedHourValue;
     }
-
     public double getHoursWorked() {
         return hoursWorked;
     }
-
     public List<Integer> getChildrenAges() {
         return childrenAges;
     }
 
-
     public int getNumberOfChildrenUnder14() {
-        return (int) childrenAges.stream().filter(age -> age < 14).count();
+        int count = 0;
+        for (int age : childrenAges) {
+            if (age < 14) {
+                count++;
+            }
+        }
+        return count;
     }
 }
