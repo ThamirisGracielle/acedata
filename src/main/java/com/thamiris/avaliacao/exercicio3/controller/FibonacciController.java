@@ -1,7 +1,9 @@
 package com.thamiris.avaliacao.exercicio3.controller;
 
+import com.thamiris.avaliacao.exercicio3.dataTransferObject.FibonacciRequest;
 import com.thamiris.avaliacao.exercicio3.dataTransferObject.FibonacciResponse;
 import com.thamiris.avaliacao.exercicio3.service.FibonacciService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -14,8 +16,8 @@ public class FibonacciController {
         this.service = service;
     }
 
-    @GetMapping("/{n}")
-    public FibonacciResponse getFibonacci(@PathVariable int n) {
-        return service.generateFibonacci(n);
+    @PostMapping("/fibonacci")
+    public FibonacciResponse getFibonacci(@Valid @RequestBody FibonacciRequest request) {
+        return service.generateFibonacci(request.getN());
     }
 }
