@@ -18,18 +18,32 @@ public class PayrollService {
     private static final double CHILD_VALUE_MEDIUM_SALARY = 18.50;
     private static final double CHILD_VALUE_HIGH_SALARY = 11.90;
 
-    /**
-    *  Calculates the complete payroll of an employee.
-    */
-    public PayrollResponse calculatePayroll(EmployeeRequest request) {
 
+    /**
+     * Calculates the complete payroll of an employee.
+     */
+    public PayrollResponse calculatePayroll(EmployeeRequest request) {
+        validateRequest(request);
+
+        Employee employee = createEmployee(request);
+
+        double grossSalary = calculateGrossSalary(employee);
+        double familyAllowance = calculateFamilyAllowance(employee, grossSalary);
+        double netSalary = grossSalary + familyAllowance;
+
+        return buildPayrollResponse(employee, grossSalary, familyAllowance, netSalary);
+    }
+
+    /**
+     * Validates the EmployeeRequest data.
+     */
+    private void validateRequest(EmployeeRequest request) {
         if (request.getName() == null || request.getName().trim().isEmpty()) {
             throw new IllegalArgumentException("O nome do funcionário não pode ser vazio!");
         }
 
-        double workedHourValue = Validator.validatePositiveDouble(request.getWorkedHourValue());
-
-        double hoursWorked = Validator.validatePositiveDouble(request.getHoursWorked());
+        Validator.validatePositiveDouble(request.getWorkedHourValue());
+        Validator.validatePositiveDouble(request.getHoursWorked());
 
         List<Integer> childrenAges = request.getChildrenAges();
         if (childrenAges == null) {
@@ -42,18 +56,33 @@ public class PayrollService {
             }
             Validator.validateNonNegativeInt(age);
         }
+    }
 
-        Employee employee = new Employee(
+    /**
+     * Creates an Employee object from the validated request data.
+     */
+    private Employee createEmployee(EmployeeRequest request) {
+        return new Employee(
                 request.getName(),
-                workedHourValue,
-                hoursWorked,
-                childrenAges
+                request.getWorkedHourValue(),
+                request.getHoursWorked(),
+                request.getChildrenAges()
         );
+    }
 
-        double grossSalary = workedHourValue * hoursWorked;
+    /**
+     * Calculates the employee's gross salary.
+     */
+    private double calculateGrossSalary(Employee employee) {
+        return employee.getWorkedHourValue() * employee.getHoursWorked();
+    }
 
+    /**
+     * Calculates the family allowance based on gross salary and
+     * the number of children under 14.
+     */
+    private double calculateFamilyAllowance(Employee employee, double grossSalary) {
         int eligibleChildren = employee.getNumberOfChildrenUnder14();
-
         double valuePerChild;
 
         if (grossSalary <= MIN_SALARY_LIMIT) {
@@ -64,10 +93,13 @@ public class PayrollService {
             valuePerChild = CHILD_VALUE_HIGH_SALARY;
         }
 
-        double familyAllowance = eligibleChildren * valuePerChild;
+        return eligibleChildren * valuePerChild;
+    }
 
-        double netSalary = grossSalary + familyAllowance;
-
+    /**
+     * Builds the PayrollResponse object with the calculated values.
+     */
+    private PayrollResponse buildPayrollResponse(Employee employee, double grossSalary, double familyAllowance, double netSalary) {
         return new PayrollResponse(
                 employee.getName(),
                 grossSalary,

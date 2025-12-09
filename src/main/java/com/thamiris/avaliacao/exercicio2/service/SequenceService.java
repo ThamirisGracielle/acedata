@@ -5,16 +5,15 @@ import com.thamiris.avaliacao.exercicio2.model.Sequence;
 import com.thamiris.avaliacao.util.Validator;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
 
 @Service
 public class SequenceService {
 
     /**
-    * Processes a list of integers, validating them and returning a response
-    * with the original sequence, the smallest, and the largest number.
-    */
+     * Processes a list of integers, validating them and returning a response
+     * with the original sequence, the smallest, and the largest number.
+     */
     public SequenceResponse processSequence(int quantity, List<Integer> numbers) {
 
         if (numbers == null || numbers.isEmpty()) {
@@ -24,8 +23,7 @@ public class SequenceService {
         if (numbers.size() != quantity) {
             throw new IllegalArgumentException(
                     "A quantidade de números informada (" + quantity +
-                            ") não coincide com a quantidade real da sequência (" + numbers.size() + ")!"
-            );
+                            ") não coincide com a quantidade real da sequência (" + numbers.size() + ")!");
         }
 
         for (int num : numbers) {
